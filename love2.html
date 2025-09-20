@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #ffe4ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    .container {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 700px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      color: #e75480;
+      font-size: 2.5rem;
+    }
+    p {
+      color: #444;
+      font-size: 1.2rem;
+    }
+    .buttons button {
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-surprise {
+      background-color: #ff5ca2;
+      color: #fff;
+    }
+    .btn-gallery {
+      background-color: #8a4fff;
+      color: #fff;
+    }
+    .buttons button:hover {
+      transform: scale(1.1);
+    }
+    .hidden { display: none; }
+    .heart {
+      font-size: 3rem;
+      color: red;
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .sparkles, .gift, .music {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+    .carousel {
+      position: relative;
+      margin-top: 20px;
+      width: 90%;
+      max-width: 340px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .polaroid {
+      position: absolute;
+      width: 100%;
+      padding: 10px;
+      background: #fff;
+      border: 3px solid #f8c8dc;
+      border-bottom: 40px solid #f8c8dc;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .polaroid.active {
+      opacity: 1;
+      position: relative;
+    }
+    .polaroid img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+    .sticker {
+      position: absolute;
+      font-size: 1.5rem;
+      bottom: 5px;
+      right: 10px;
+    }
+
+    /* Floating hearts background */
+    .floating-heart {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 8s linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>For My Love My Anwesha ❤️</h1>
+    <p>You are the most beautiful part of my life, my safe place, and my forever happiness. Kya tareef karu apki, aap toh mere meethe dil ho ji. I love you so much Anwesha my sweetheart. This little website is just for you. 💕</p>
+
+    <div class="buttons">
+      <button class="btn-surprise" onclick="toggleSurprise()">Click for Surprise</button>
+      <button class="btn-gallery" onclick="toggleGallery()">Show Gallery</button>
+    </div>
+
+    <div id="surprise" class="hidden">
+      <div class="heart">❤️</div>
+      <p>I love you endlessly, today, tomorrow, and always. 💖</p>
+      <div class="sparkles">✨ You make my world shine brighter every day ✨</div>
+      <div class="gift">🎁 A virtual gift of hugs & kisses 💋</div>
+      <div class="music">🎶 If love had a soundtrack, it would be your laughter 🎶</div>
+    </div>
+
+    <div id="gallery" class="hidden">
+      <div class="carousel">
+        <div class="polaroid active">
+          <img src="WhatsApp Image 2025-09-19 at 19.41.17_e22daaa4.jpg" alt="Love Photo 1">
+          <div class="sticker">💕</div>
+        </div>
+        <div class="polaroid">
+          <img src="WhatsApp Image 2025-09-19 at 19.38.38_4033e860.jpg" alt="Love Photo 2">
+          <div class="sticker">🌸</div>
+        </div>
+        <div class="polaroid">
+          <img src="WhatsApp Image 2025-09-19 at 19.39.07_2721a3fa.jpg" alt="Love Photo 3">
+          <div class="sticker">🥰</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let surpriseVisible = false;
+    let galleryVisible = false;
+    let currentIndex = 0;
+    const polaroids = document.querySelectorAll(".polaroid");
+
+    function toggleSurprise() {
+      surpriseVisible = !surpriseVisible;
+      document.getElementById("surprise").classList.toggle("hidden", !surpriseVisible);
+    }
+
+    function toggleGallery() {
+      galleryVisible = !galleryVisible;
+      document.getElementById("gallery").classList.toggle("hidden", !galleryVisible);
+    }
+
+    setInterval(() => {
+      if (galleryVisible) {
+        polaroids[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % polaroids.length;
+        polaroids[currentIndex].classList.add("active");
+      }
+    }, 3000);
+
+    // Floating hearts
+    const emojis = ["❤️", "💖", "💘", "💕", "🌸", "🥰"];
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 800);
+  </script>
+</body>
+</html>
